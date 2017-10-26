@@ -1,0 +1,123 @@
+<!DOCTYPE HTML>
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        
+        <style>
+
+            body{
+                background-color: #FF5309;
+              
+            }
+           
+           header{
+               display:flex;
+               flex-direction: row;
+               justify-content: center;
+               padding:50px 0px;
+           }
+
+           #content{
+               display:flex;
+               justify-content: center;
+               align-items: center;
+               width:100%;
+           }
+
+           .boardClass{
+               height: 600px;
+               width: 600px;
+               background-color: white;
+               display: flex;
+               flex-direction: column;
+           }
+
+           .rowClass{
+               flex-grow: 1;
+               background-color: #000000;
+               width:100%;
+               display:flex;
+           }
+
+           .boxClass {
+               background-color: red;
+               min-width: 50px;
+               flex-basis: auto;
+               flex-grow:1;
+           }
+
+        </style>
+
+    </head>
+
+    <body>
+
+        <header>
+        <button>START</button>
+        </header>
+
+        <div id="content">
+
+        </div>
+
+
+
+        <script>
+
+            var nrOfBoxes = 8;
+
+            //Hämtar content från htmlkod
+            var contentDiv = document.getElementById("content");
+
+            //Skapa en board div med class namn boardClass
+            var board = document.createElement("div");
+            board.className = "boardClass";
+
+            //Loopa tills vi gjort 8 rader av rows, hämtar funktionen
+            for(var y = 0; y < 8; y++) {
+            var row = addRowToBoard();
+
+               for(var x = 0; x < nrOfBoxes; x++) {
+
+                var box = document.createElement("div");
+                box.className = "boxClass";
+                row.appendChild(box);
+
+                if((x + y) % 2) {
+                    box.style.backgroundColor = "black";
+                } else {
+                    box.style.backgroundColor = "white";
+                }
+
+               }
+
+            }
+
+        
+            //spara alltid allt vi gör i domen längst ner för att spara prestanda
+            contentDiv.appendChild(board);
+
+            function addRowToBoard(){
+
+            //Skapar row div med class namn rowClass. Sparar rows i board
+            var row = document.createElement("div")
+            row.className = "rowClass";
+        
+
+            board.appendChild(row);
+            return row;
+            //returnerar row och sätter var row i for loopen
+
+            }
+
+    
+           
+            
+
+
+        </script>
+
+
+    </body>
+</html>
